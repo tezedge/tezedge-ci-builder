@@ -4,12 +4,16 @@ ARG tezos_branch="v8.0-rc1"
 ARG python_version="3.8.2"
 ARG rust_version="nightly-2020-10-24"
 
+# rust install
 USER root
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
     PATH=/usr/local/cargo/bin:$PATH 
 RUN apt-get update && apt-get install -y libssl-dev
 RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain ${rust_version} -y
+
+# cargo add-ons install
+RUN cargo install critcmp
 
 # pyton stuff
 RUN apt-get update && \
