@@ -2,7 +2,7 @@ FROM simplestakingcom/tezos-opam-builder:debian10
 
 ARG tezos_branch="v8.0-rc1"
 ARG python_version="3.8.2"
-ARG rust_version="nightly-2020-10-24"
+ARG rust_version="nightly-2020-12-31"
 
 USER root
 RUN apt-get update && \
