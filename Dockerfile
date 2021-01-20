@@ -1,8 +1,9 @@
 FROM simplestakingcom/tezos-opam-builder:debian10
 
-ARG tezos_branch="v8.0-rc1"
+ARG tezos_branch="v8.1"
 ARG python_version="3.8.2"
 ARG rust_version="nightly-2020-12-31"
+ARG ocaml_rust_version="1.44.0"
 
 USER root
 RUN apt-get update && \
@@ -16,6 +17,7 @@ ENV RUSTUP_HOME=/home/appuser/.rustup \
     CARGO_HOME=/home/appuser/.cargo \
     PATH=/home/appuser/.cargo/bin:$PATH 
 
+# install rust
 RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain ${rust_version} -y
 
 # cargo add-ons install
@@ -39,6 +41,13 @@ RUN poetry config virtualenvs.in-project true
 
 # setup tezos repo
 RUN git clone https://gitlab.com/tezos/tezos.git --branch ${tezos_branch} /home/appuser/tezos-src/tezos && \
-    cd /home/appuser/tezos-src/tezos && make build-deps && opam config exec -- make && \ 
+    cd /home/appuser/tezos-src/tezos && \
+    rustup toolchain install ${ocaml_rust_version} && \
+    rustup override set ${ocaml_rust_version} && \
+    make build-deps && opam config exec -- make && \
     cd /home/appuser/tezos-src/tezos/tests_python && \
     poetry install
+
+# check default rust should be ${rust_version}
+RUN rustc --version && \
+    cargo --version
