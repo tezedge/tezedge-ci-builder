@@ -1,6 +1,6 @@
 FROM simplestakingcom/tezos-opam-builder:debian10
 
-ARG tezos_branch="v8.1"
+ARG tezos_branch="v8.2"
 ARG python_version="3.8.2"
 ARG rust_version="nightly-2020-12-31"
 ARG ocaml_rust_version="1.44.0"
