@@ -1,7 +1,7 @@
 FROM simplestakingcom/tezos-opam-builder:debian10
 
-ARG tezos_branch="v8.2"
-ARG python_version="3.8.2"
+ARG tezos_branch="v9.2"
+ARG python_version="3.8.5"
 ARG rust_version="nightly-2020-12-31"
 ARG ocaml_rust_version="1.44.0"
 
@@ -33,7 +33,7 @@ RUN pyenv install -v ${python_version} && \
     pyenv rehash
 
 # install poetrty (virtual environment manager)
-RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 -
 ENV PATH="/home/appuser/.poetry/bin:/home/appuser/.pyenv/shims:$PATH"
 
 # poetry configuration
@@ -50,4 +50,5 @@ RUN git clone https://gitlab.com/tezos/tezos.git --branch ${tezos_branch} /home/
 
 # check default rust should be ${rust_version}
 RUN rustc --version && \
-    cargo --version
+    cargo --version && \
+    poetry --version
