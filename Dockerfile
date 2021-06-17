@@ -10,7 +10,7 @@ RUN apt-get update && \
     apt-get install -y make zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev  \
     wget curl llvm libncurses5-dev libssl-dev \
     libncursesw5-dev xz-utils tk-dev \
-    libffi-dev liblzma-dev python-openssl
+    libffi-dev liblzma-dev python-openssl libnuma-dev
 
 USER appuser
 ENV RUSTUP_HOME=/home/appuser/.rustup \
@@ -52,3 +52,9 @@ RUN git clone https://gitlab.com/tezos/tezos.git --branch ${tezos_branch} /home/
 RUN rustc --version && \
     cargo --version && \
     poetry --version
+
+USER root
+# get the rt-test repo and compile the tests
+RUN git clone git://git.kernel.org/pub/scm/utils/rt-tests/rt-tests.git --branch stable/v1.0
+RUN cd rt-tests && make all && make install
+USER appuser
