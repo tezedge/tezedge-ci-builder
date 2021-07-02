@@ -56,7 +56,7 @@ Fork is important if we want to run our own CI environment as the drone CI runs 
 
 ### 5. Clone the two repositories
 
-You will need this repository to set up the CI environment and the forked tezedge repository to add execute new builds inside the CI
+You will need this repository to set up the CI environment and the forked tezedge repository to execute new builds inside the CI
 
 ```
 $ git clone https://github.com/tezedge/tezedge-ci-builder.git
