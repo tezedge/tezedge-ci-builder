@@ -1,0 +1,25 @@
+---
+
+# The drone server
+drone_server: <edit>
+
+# User with the ssh connects to the target machines
+target_hosts_user: <edit>
+
+# The github username you wish to add as an admin for the drone CI
+admin_user: <edit>
+
+# Variables for drone server configuration
+github_client_id: <edit>
+github_client_secret: <edit> 
+rpc_secret: <edit>
+
+# ** DO NOT EDIT THE VARIABLES BELOW THIS LINE **
+
+# Path to the tezedge-ci data that needs to be acquired before running the ci
+ci_data_path: "/home/{{ target_hosts_user }}"
+
+# SSH configuration
+ssh_strict_host_keys: 'no'
+ssh_config_file: "/home/{{ target_hosts_user }}/.ssh/config"
+...
