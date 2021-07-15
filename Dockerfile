@@ -10,7 +10,7 @@ RUN apt-get update && \
     apt-get install -y make zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev  \
     wget curl llvm libncurses5-dev libssl-dev \
     libncursesw5-dev xz-utils tk-dev \
-    libffi-dev liblzma-dev python-openssl libnuma-dev valgrind
+    libffi-dev liblzma-dev python-openssl libnuma-dev valgrind time
 
 USER appuser
 ENV RUSTUP_HOME=/home/appuser/.rustup \
