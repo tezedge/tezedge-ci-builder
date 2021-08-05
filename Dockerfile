@@ -2,7 +2,7 @@ FROM tezedge/tezos-opam-builder:debian10
 
 ARG tezos_branch="v9.5"
 ARG python_version="3.8.5"
-ARG rust_version="nightly-2020-12-31"
+ARG rust_version="nightly-2021-08-04"
 ARG ocaml_rust_version="1.44.0"
 
 USER root
