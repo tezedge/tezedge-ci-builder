@@ -1,8 +1,8 @@
 FROM tezedge/tezos-opam-builder:debian10
 
-ARG tezos_branch="v9.5"
+ARG tezos_branch="v10.3"
 ARG python_version="3.8.5"
-ARG rust_version="nightly-2020-12-31"
+ARG rust_version="nightly-2021-08-04"
 ARG ocaml_rust_version="1.44.0"
 
 USER root
@@ -15,7 +15,7 @@ RUN apt-get update && \
 USER appuser
 ENV RUSTUP_HOME=/home/appuser/.rustup \
     CARGO_HOME=/home/appuser/.cargo \
-    PATH=/home/appuser/.cargo/bin:$PATH 
+    PATH=/home/appuser/.cargo/bin:$PATH
 
 # install rust
 RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain ${rust_version} -y
@@ -27,7 +27,7 @@ RUN cargo install critcmp
 RUN curl https://pyenv.run | bash
 ENV PATH="/home/appuser/.pyenv/bin:$PATH"
 
-# install python 
+# install python
 RUN pyenv install -v ${python_version} && \
     pyenv global ${python_version} && \
     pyenv rehash
