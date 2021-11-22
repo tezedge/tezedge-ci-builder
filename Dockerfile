@@ -1,9 +1,9 @@
 FROM tezedge/tezos-opam-builder:debian10
 
-ARG tezos_branch="v10.3"
+ARG tezos_branch="v11-release"
 ARG python_version="3.8.5"
 ARG rust_version="nightly-2021-08-04"
-ARG ocaml_rust_version="1.44.0"
+ARG ocaml_rust_version="1.52.1"
 
 USER root
 RUN apt-get update && \
