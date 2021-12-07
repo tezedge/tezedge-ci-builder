@@ -1,7 +1,7 @@
 FROM tezedge/tezos-opam-builder:debian10
 
 ARG tezos_branch="v11-release"
-ARG python_version="3.8.5"
+ARG python_version="3.9.5"
 ARG rust_version="nightly-2021-08-04"
 ARG ocaml_rust_version="1.52.1"
 
