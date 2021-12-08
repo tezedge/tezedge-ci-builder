@@ -45,6 +45,8 @@ RUN git clone https://gitlab.com/tezos/tezos.git --branch ${tezos_branch} /home/
     rustup toolchain install ${ocaml_rust_version} && \
     rustup override set ${ocaml_rust_version} && \
     make build-deps && opam config exec -- make && \
+    rm -rf _build _opam /home/appuser/.opam && \
+    chmod +w tezos-* && rm tezos-proxy-server tezos-signer tezos-snoop && strip -s tezos-* && chmod -w tezos-* && \
     cd /home/appuser/tezos-src/tezos/tests_python && \
     poetry install
 
